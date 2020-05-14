@@ -1,0 +1,43 @@
+\documentclass[3p]{elsarticle}
+
+\usepackage{lineno,hyperref}
+\modulolinenumbers[5]
+
+\journal{Journal of \LaTeX\ Templates}
+
+\bibliographystyle{elsarticle-num}
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{Virtualized Network Service Function Chaining Subject to Management Resource Constraint}
+
+\author[aut]{Parham Alvani \corref{correspondingauthor}}
+\ead{parham.alvani@aut.ac.ir}
+\author[aut]{Bahador Bakhshi}
+\ead{bbakhshi@aut.ac.ir}
+
+\cortext[correspondingauthor]{Corresponding author.}
+
+\address[aut]{Amirkabir University of Technology, Tehran, Iran}
+
+\begin{abstract}
+In the old times, Network providers use hardware network functions to create their service chains, but a change in this manner is difficult and may cause many service distribution.
+SFC and NFV is the solution to this difficulty. By using SFC and NFV, providers can provision chains dynamically and then change them in runtime.
+One of the main requirements is management and monitoring for the chains.
+In this research, we consider the chain acceptance problem subject to management resources. In the first step, we formulate
+problem with ILP and then implement it in CPLEX framework. As we know, ILP problems are NP-Hard, so we need a Polynomial-Time solution to the problem.
+In this research, we create a heuristic algorithm and compare its result with the optimal solution. In the end, the heuristic solution produces near-optimal results in the polynomial time.
+\end{abstract}
+
+\begin{keyword}
+\end{keyword}
+
+\end{frontmatter}
+
+\input{related-works}
+
+\bibliography{references}
+
+\end{document}
