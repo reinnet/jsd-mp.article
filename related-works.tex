@@ -1,0 +1,20 @@
+\section{Related Works}
+
+Here we want to review on works that have been done on Service Placement and Resource Assignment
+in SFC and NFV in these works we emphasize management resources and service placement.
+In this work, we see resources assignment as assigning the network, computation and memory resources.
+We assign computation and memory resources to virtual machines to run the services and assign network resources to links for running the virtual links of chains.
+
+\subsection{Resource Allocation in NFV}
+The VNF placement problem has received substantial attention in the literature.
+Formally the problem is defined as selecting locations for a chain of VNF instances.
+There are multiple objectives to consider with VNF placement.
+For Example, In [6] authors want to accept the maximum number of chains by considering only the processing and network resources and types for VNFs to create instances from these types.
+
+\subsection{Management Resources in NFV}
+In the NFV literature, each NFV chain must be monitored and managed by VNFM
+These types of resources consider management resources in this work.
+To best of our knowledge \cite{AbuLebdeh2017} and their next work [?] are the only ones that consider VNFM and other management resources in the placement process.
+In [2] authors try to optimize VNFM placement over a distributed NFVI
+
+Our work considers these problems as a joint problem and wants to place chains and their VNFM at the same time. To best of our knowledge, this work hasn't been done in the literature. By considering the joint problem you may not accept a chain that you don't have any management resource for it or you can accept many chains that have little management resource requirement.
