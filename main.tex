@@ -1,4 +1,24 @@
-\documentclass[3p]{elsarticle}
+\documentclass[preprint,review,12pt]{elsarticle}
+
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage[noend]{algpseudocode}
+\usepackage{algorithm}
+\usepackage{subfig}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{amsthm}
+\usepackage{color}
+\usepackage{soul}
+\usepackage{ulem}
+\usepackage{amsmath}
+
+\newcommand{\hlr}[2][red]{ {\sethlcolor{#1} \hl{#2}} }
+\newcommand{\hly}[2][yellow]{ {\sethlcolor{#1} \hl{#2}} }
+\newcommand{\hlg}[2][green]{ {\sethlcolor{#1} \hl{#2}} }
+\newcommand{\hlp}[2][pink]{ {\sethlcolor{#1} \hl{#2}} }
 
 \usepackage{lineno,hyperref}
 \modulolinenumbers[5]
@@ -11,11 +31,15 @@
 
 \begin{frontmatter}
 
-\title{Virtualized Network Service Function Chaining Subject to Management Resource Constraint}
+\title{Joint Service Chain Deployment and Manager Placement in NFV}
 
-\author[aut]{Parham Alvani \corref{correspondingauthor}}
+\author[aut]{Parham Alvani
+%طبق قوانین دانشگاه استاد باید باشد
+%\corref{correspondingauthor}
+}
 \ead{parham.alvani@aut.ac.ir}
-\author[aut]{Bahador Bakhshi}
+\author[aut]{Bahador Bakhshi
+\corref{correspondingauthor}}
 \ead{bbakhshi@aut.ac.ir}
 
 \cortext[correspondingauthor]{Corresponding author.}
@@ -23,6 +47,14 @@
 \address[aut]{Amirkabir University of Technology, Tehran, Iran}
 
 \begin{abstract}
+\hly{
+a) Motivation
+b) Introduce the problem
+c) Why is there a research gap
+d) What have we done
+e) What are the results
+}
+
 In the old times, Network providers use hardware network functions to create their service chains, but a change in this manner is difficult and may cause many service distribution.
 SFC and NFV is the solution to this difficulty. By using SFC and NFV, providers can provision chains dynamically and then change them in runtime.
 One of the main requirements is management and monitoring for the chains.
@@ -36,7 +68,69 @@ In this research, we create a heuristic algorithm and compare its result with th
 
 \end{frontmatter}
 
+\section{Introduction}
+
+\hly{
+a) A general introduction of the context
+b) More specific context of problem and its importance
+c) A very brief review of literature and introduce the research gap
+d) What is the problem
+e) What are the contributions
+f) The structure of the paper
+}
+
+\section{Related Work}
+
+\hly{
+a) Review of related work
+b) Again emphasize on gap
+c) What are the differences between this work and the related work
+}
+
+
 \input{related-works}
+
+\section{System Model and Problem Statement}
+\hly{
+a) Assumptions
+b) System model
+Table of notations
+c) Problem statement
+Define the problem in English using the notations and finally give an illustrative example to clarify the
+problem
+}
+
+\section{Problem Formulation}
+\hly{
+a) Define variables and parameters
+b) Define objective function
+c) Define constraints
+d) Put the objective function and constraints together and define the problem
+e) State the complexity of the model (NP-Hardness)
+}
+
+\section{Proposed Solution}
+\hly{
+a) Use the top-down approach. At be beginning draw a big picture of the solution steps
+b) Explain the details of the steps. Emphasize the idea behind the heuristic decisions
+c) Put all them together as a pseudo code or flowchart
+d) Analyze the complexity of the proposed solution
+}
+
+\section{Evaluation and Numerical Results}
+\hly{
+a) Simulation settings: Topologies and all other parameters used in simulation it is better to use a table
+The algorithms which are simulated
+Parameters used for evaluation
+b) A subsection per parameter
+Emphasize on achievements
+}
+
+\section{Conclusion and Future Work}
+\hly{
+a) Review of what we have done
+b) What is the future step
+}
 
 \bibliography{references}
 

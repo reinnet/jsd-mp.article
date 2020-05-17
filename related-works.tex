@@ -1,5 +1,3 @@
-\section{Related Works}
-
 Here we want to review on works that have been done on Service Placement and Resource Assignment
 in SFC and NFV in these works we emphasize management resources and service placement.
 In this work, we see resources assignment as assigning the network, computation and memory resources.
@@ -18,3 +16,129 @@ To best of our knowledge \cite{AbuLebdeh2017} and their next work [?] are the on
 In [2] authors try to optimize VNFM placement over a distributed NFVI
 
 Our work considers these problems as a joint problem and wants to place chains and their VNFM at the same time. To best of our knowledge, this work hasn't been done in the literature. By considering the joint problem you may not accept a chain that you don't have any management resource for it or you can accept many chains that have little management resource requirement.
+
+\begin{table}[ht]
+    \caption{}
+    \label{table.1}
+    \medskip
+    \begin{tabularx}{\linewidth}{X | X X X X | X X | X X}
+        \toprule
+        Ref &
+        \multicolumn{4}{c|}{Resources} &
+        \multicolumn{2}{c|}{\shortstack{VNF Processing\\Limit}} &
+        \multicolumn{2}{c}{Online} \\
+        \midrule
+        \# &
+        Other &
+        Mem &
+        BW &
+        CPU &
+        Yes &
+        No &
+        Yes &
+        No \\
+        \midrule
+        \cite{Eramo2016} &
+        --- &
+        --- &
+        \checkmark&
+        \checkmark&
+        --- &
+        \checkmark&
+        --- &
+        \checkmark\\
+        \midrule
+        \cite{Ghaznavi2017} &
+        --- &
+        --- &
+        \checkmark&
+        \checkmark&
+        \checkmark&
+        --- &
+        --- &
+        \checkmark\\
+        \midrule
+        \cite{Huang2017} &
+        --- &
+        --- &
+        \checkmark&
+        \checkmark&
+        \checkmark&
+        --- &
+        --- &
+        \checkmark\\
+        \midrule
+        Curr &
+        --- &
+        \checkmark&
+        \checkmark&
+        \checkmark&
+        \checkmark&
+        --- &
+        --- &
+        \checkmark\\
+        \bottomrule
+    \end{tabularx}
+    
+    \bigskip
+    
+    \begin{tabularx}{\linewidth}{X | X X | X X | X X | X X}
+        \toprule
+        Ref &
+        \multicolumn{2}{c|}{Mapping} &
+        \multicolumn{2}{c|}{VNF} &
+        \multicolumn{2}{c|}{Sharing} &
+        \multicolumn{2}{c}{VNFM} \\
+        \midrule
+        \# &
+        VNF &
+        Link &
+        Single &
+        Dist. &
+        Yes &
+        No &
+        Yes &
+        No \\
+        \midrule
+        \cite{Eramo2016} &
+        \checkmark&
+        \checkmark&
+        \checkmark&
+        --- &
+        --- &
+        \checkmark&
+        --- &
+        \checkmark\\
+        \midrule
+        \cite{Ghaznavi2017} &
+        \checkmark&
+        \checkmark&
+        --- &
+        \checkmark&
+        --- &
+        \checkmark&
+        --- &
+        \checkmark\\
+        \midrule
+        \cite{Huang2017} &
+        \checkmark&
+        \checkmark&
+        --- &
+        \checkmark&
+        --- &
+        \checkmark&
+        --- &
+        \checkmark\\
+        \midrule
+        Curr &
+        \checkmark&
+        \checkmark&
+        \checkmark&
+        --- &
+        --- &
+        \checkmark&
+        --- &
+        \checkmark\\
+        \bottomrule
+    \end{tabularx}
+\end{table}

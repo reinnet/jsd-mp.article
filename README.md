@@ -7,6 +7,9 @@ The latex files of JSD-MP article in Elsevier template.
 
 ```sh
 sudo tlmgr install elsarticle
+sudo tlmgr install multirow
+sudo tlmgr install algorithmicx
+sudo tlmgr install soul
 ```
 
 2. Compile and Run :dancer:
