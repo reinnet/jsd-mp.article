@@ -9,6 +9,9 @@ We will concentrate on network function chain placement which dynamically steers
 traffic through an ordered list of Service Functions from 3 categories that are discussed in \cite{Laghrissi2019}.
 Objectives like energy consumption minization, cost optimization, Quality of Service (QoS), resource usage, reliablity,
 and load balancing.
+Authors consider this problem statically (off-line) or dynamically (on-line) and from the aformentioned objective they sometimes
+consider more than one objective. Solutions vary from heuristics to meta-heuristic like simulated annealing.
+For getting more information on these placement problems please refer to \cite{Laghrissi2019}.
 
 \subsection{Management Resources in NFV}
 As already mentioned, this work considers management resources. To best of our knowledge, work \cite{AbuLebdeh2017}, its next work \cite{AbuLebdeh20172}, and \cite{Chiang2019} are the only ones that consider VNFM and other management resources in SFC deployment.
@@ -43,12 +46,6 @@ To conclude, the problem of joint SFC deployment and VNFMs placement has not yet
 
 \subsection{Current Work}
 
-Our work considers the above problems jointly and wants to place chains and their corresponding VNFM at the same time.
-We believe this work hasn't been done in the literature before.
-By considering the joint problem, you may not accept a chain that you don't have any management resource for it,
-or you can get many chains that have little management resource requirement.
-These considerations create a better solution with more profit to datacenter from provisioning the set of chains,
-and the results in \ref{sec:joint-vs-disjoint} approves it.
 The closest work to current research is \cite{AbuLebdeh2017} but it assumes that the VNFs' placement is known and solves only the VNF manager placement problem. Current research also considers more constraints that \cite{AbuLebdeh2017} on VNFM placements that we discuss deeply in the following sections and summarize them here:
 
 \begin{itemize}
