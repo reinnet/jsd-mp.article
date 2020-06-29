@@ -1,56 +1,43 @@
-In this section, we review the works that have been done on service chain deployment and resource assignment in NFV, and mainly we focus on the works that consider management requirements of chains.
-
-In NFV, resource assignment is composed of
-allocating computing and memory resources for virtual machines to run the chains' virtual network functions and assigning network resources to the chains' virtual links. Various objective functions, e.g., minimizing cost, maximizing profit and minimizing power consumption can be aimed in the resource management problem where a wide range of additional, e.g., end-to-end delay, fault tolerance as well as management requirements need to be satisfied.
+In this section, we review the works that have been done on service chain deployment and resource assignment in NFV, and mainly focus on the works that consider management requirements of chains.
 
 \subsection{Resource Allocation in NFV}
-The VNF placement problem has received substantial attention in the literature \cite{GilHerrera2016}.
-We will concentrate on network function chain placement which dynamically steers
-traffic through an ordered list of Service Functions from 3 categories that are discussed in \cite{Laghrissi2019}.
-Objectives like energy consumption minization, cost optimization, Quality of Service (QoS), resource usage, reliablity,
-and load balancing.
-Authors consider this problem statically (off-line) or dynamically (on-line) and from the aformentioned objective they sometimes
-consider more than one objective. Solutions vary from heuristics to meta-heuristic like simulated annealing.
-For getting more information on these placement problems please refer to \cite{Laghrissi2019}.
+The service chain deployment problem has recently received substantial attention in the literature \cite{GilHerrera2016}[\hly{???}][\hly{...}].
+This problem is composed of two main steps: allocating computing and memory resources for virtual machines to run the chains' virtual network functions and assigning network resources to the chains' virtual links [\hly{???}].
+Various versions of this problem with different objective functions and considering wide range of constraints have been investigated in the literature [\hly{???}].
+In the following, we concentrate on the approaches that dynamically steer traffic through an ordered list of service functions from the categories that are discussed in \cite{Laghrissi2019},
+namely are \hlr{objective function -- is it right???}, \hlr{constraints -- is it right???}, and \hlr{solution approach -- is it right???}.
+
+From the objective function standpoint, deployment of service chains can be optimized for different goals.
+One of the most common category is the approaches that utilize SFC deployment as a tool to maximize the business profit of the infrastructure provider [\hly{???}][\hly{ these references are NOT survey papers!!! find the original papers for them}][\hly{???}].
+In these approaches, the objective is to maximize the revenue gained by accepting SFC requests while minimizing the cost of physical servers and links [\hly{???}][\hly{...}], the cost of VNF images and licenses [\hly{???}][\hly{...}], and ....\hlr{some other costs, find them in survey papers}. Energy-awareness is another objective that has been considered in SFC deployment problem [\hly{???}][\hly{...}]\hly{Also cite  https://doi.org/10.1109/TNSM.2019.2944023}, wherein, it is aimed to minimize the power footprint of the infrastructure provider by turning off the unused servers and links via green networking techniques, e.g., traffic consolidation  [\hly{a recent reference for green networking}]. While QoS requirements are typically considered as the constraints of the SFC deployment problem, some work have optimized QoS metrics, e.g., delay and congestion, as the objective function of the problem  [\hly{???}][\hly{...}]. Finally, it is worth to note that there are plenty of work in the literature that aimed to optimize multiple objectives simultaneously, e.g., X and X  [\hly{???}], X and X  [\hly{???}] ....
+
+The constraints of the SFC deployment problem are the second differentiating factor of the existing work on this problem. The required computing resources for virtual functions and bandwidth for virtual links of chains as well as the limited capacity of the infrastructure network resources are the most basic constraints in the SFC problem [\hly{???}][\hly{...}]. In addition to these basic constraints, some more realistic assumptions as well as QoS requirements of chains have also been considered. While VNFs are software images, their processing capacity is typically limited by software implementing issues and license beside the underlying hardware capacity; this  limitation was considered in [\hly{???}][\hly{...}]. Authors also took into account different QoS requirements of service chains, for example end-to-end delay [\hly{???}][\hly{...}] [\hly{also cite https://ieeexplore.ieee.org/document/8786444}] and reliability [\hly{???}][\hly{...}] [\hly{also cite https://ieeexplore.ieee.org/document/8786672}]. Finally, it should be noted that management requirements of service chains are another important category of constraints, which have received a little attention yet [\hly{???}][\hly{...}]. We will elaborate it in the following subsection.
+
+Several solution methods have been utilized to approach the SFC deployment problem. Mainly, the problem is formulated as a Mixed Integer Linear Programming (MILP) model; and since it is NP-Hard [\hly{???}], various approaches have been proposed to tackle its complexity. Optimization theory techniques like decomposition methods and Lagrangian relaxation methods were proposed [\hly{???}][\hly{...}]\hly{Also cite  https://doi.org/10.1109/TNSM.2019.2944023}. Another category is the solutions based on meta-heuristic algorithms, e.g., Tabu search, genetic algorithm, and ... [\hly{???}][\hly{...}]. The problem specific heuristic algorithms are also very common [\hly{???}][\hly{...}]. Available information about demands is another important issue in solution approaches. In off-line approaches, it is assumed that whole demands are known at the beginning, while in on-line solutions, demands arrive one-by-one [\hly{???}][\hly{...}].
+
+%Objectives like energy consumption minization, cost optimization, Quality of Service (QoS), resource usage, reliablity, and load balancing. Authors consider this problem statically (off-line) or dynamically (on-line) and from the aformentioned objective they sometimes consider more than one objective. Solutions vary from heuristics to meta-heuristic like simulated annealing. For getting more information on these placement problems please refer to \cite{Laghrissi2019}.
+
+Until now, we briefly reviewed the work on general SFC deployment problem; interested readers can refer to [\hly{???}][\hly{...}] for more details. In comparison to previous works, here, we consider profit maximization as the objective function, formulate the problem as MILP model, and use Tabu search to solve it. However, in addition to computation and bandwidth requirements, we consider the management requirement which have not investigated in the literature except very few studies that are discussed in the following.
+
 
 \subsection{Management Resources in NFV}
-As already mentioned, this work considers management resources. To best of our knowledge, work \cite{AbuLebdeh2017}, its next work \cite{AbuLebdeh20172}, and \cite{Chiang2019} are the only ones that consider VNFM and other management resources in SFC deployment.
+As already mentioned, this work considers management requirements in SFC deployment.
+To the best of our knowledge, work \cite{AbuLebdeh2017}, its next work \cite{AbuLebdeh20172}, and reference \cite{Chiang2019} are the only ones that consider VNFM and other management resources in SFC deployment.
 
 In \cite{AbuLebdeh2017}, the authors studied the problem of VNFM placement in a distributed NFV infrastructure under the assumption that chains have already been deployed and consequently, the location of VNFs are known.
-The objective function of the VNFM placement problem is to minimize the operational costs which is:
-\begin{itemize}
-    \item Life cycle Management Cost
-    \item Compute Resources Cost
-    \item Migration Cost
-    \item Reassignment Cost
-\end{itemize}
-Delay constraint on management links is also considered.
-The authors used tabu search algorithm because of its superior results to other techniques in FLP, for finding a polynomial solution. They start from a feasible placement and each step they improve VNFM placement by doing one of these moves:
-\begin{itemize}
-    \item Reassignment
-    \item Relocation
-    \item Bulk
-    \item Deactivation
-\end{itemize}
-While this is the first work that investigated the management resource assignment in NFV, it does not the joint SFC deployment and VNFM placement.
+The objective function of the VNFM placement problem is to minimize the operational costs which is composed of life cycle management cost,
+compute resources cost, migration cost, and reassignment cost. Delay constraint on management links is also considered.
+The authors used Tabu search algorithm
+to find a polynomial solution. They start from a feasible placement, and in each step, they improve VNFM placement by doing reassignment, relocation, bulk reassignment, and deactivation.
+While this is the first work that investigated the management resource assignment in NFV, it does not \textit{jointly} deploy SFCs and VNFMs.
 
-In \cite{AbuLebdeh20172} authors solve VNFO placement problem that is far from our current work that doesn't consider VNFO.
-Authors consider the same system as \cite{AbuLebdeh2017} but here they want to place VNFO and VNFM jointly, trying to minimize operational cost as defined by \cite{AbuLebdeh2017}.
-They propose a two step placement algorithm that first place VNFOs and then place VNFMs. Each of these steps use Tabu-Search method.
+In \cite{AbuLebdeh20172}, authors extended their previous work \cite{AbuLebdeh2017}, and solve the VNFO placement problem.
+Authors consider the same system model as \cite{AbuLebdeh2017}, but here they aim to place VNFO and VNFM jointly to minimize operational cost as defined in \cite{AbuLebdeh2017}.
+They propose a two step placement algorithm that first place VNFOs and then place VNFMs, which use Tabu search method. That paper also assumes that SFCs have already been deployed.
 
-In \cite{Chiang2019} authors consider autonomy for VNFMs that selects their managed VNFs dynamically and use game theory to achieve a distributed solution to the VNFM Placement Problem as desribed in \cite{AbuLebdeh2017}.
-Authors consider the same system model from \cite{AbuLebdeh2017} and try minimize operational cost consists of bandwidth cost and compute cost.
-In our work relation between VNFMs and VNFs are static and VNFM cannot change these relation by their own.
+In \cite{Chiang2019}, authors consider autonomy for VNFMs, so they select their managed VNFs dynamically. The authors use game theory to achieve a distributed solution to the VNFM Placement Problem as described in \cite{AbuLebdeh2017}.
+In that paper, again it is assumed that the location of VNFs are given and VNFM placement is the only problem.
 
-To conclude, the problem of joint SFC deployment and VNFMs placement has not yet been consider. In the rest of this paper, we formulate the problem and propose solution for it.
-
-\subsection{Current Work}
-
-The closest work to current research is \cite{AbuLebdeh2017} but it assumes that the VNFs' placement is known and solves only the VNF manager placement problem. Current research also considers more constraints that \cite{AbuLebdeh2017} on VNFM placements that we discuss deeply in the following sections and summarize them here:
-
-\begin{itemize}
-    \item Current research considers license cost for VNFM instances
-    \item In current research each physical node has its specific list of nodes that can run its VNFM. This constraint provides a great flexibility for implementing management policies.
-\end{itemize}
-
-At the end current research and \cite{AbuLebdeh2017} have different objectives but we will try to compare their results and solutions.
+To conclude, as discussed, the previous work on management resource in NFV, are based on the system model of \cite{AbuLebdeh2017} wherein it is assumed that service chains are deployed beforehand.
+But, here, we aim to \textit{jointly} optimize SFC deployment and SFC placement. Moreover, we consider license cost for VNFM instances and in our model,
+each physical node has its specific list of nodes that can run its VNFM that provides a great flexibility for implementing management policies.
