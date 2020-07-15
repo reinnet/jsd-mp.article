@@ -1,0 +1,15 @@
+\par
+Here we try to define a realistic and complete that considers the placement problem besides the management resources.
+In our problem we consider many requirements including:
+
+\begin{itemize}
+    \item Some of the physical servers may not be managed by specific set of physical server because of their distance or security concerns.
+    \item VNFs have typs and may be there are restrictions on their placement.
+    \item Each VNFM needs a license for managing the specific number of VNF instances.
+\end{itemize}
+
+\par
+Consider n chains known a priori with their specifications and requirements.
+VNFs have types and each type has its specific memory and processing requirement.
+We don't share VNFs between chains and each chain has a single VNFM for consistent management and monitoring.
+We want to place chains with their VNFM to maximize profit. Accepting each chain has specific gain and buying license costs.

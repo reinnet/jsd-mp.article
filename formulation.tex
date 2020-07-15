@@ -1,0 +1,198 @@
+\par
+Infrastructure graph shows with the following weighted graph:
+\[
+G_S^{PN} = (V_S^{PN}, E_S^{PN})
+\]
+in which
+\(V_S^{PN}\) represents infrastructure nodes (\(N_{ram}^{PN}\) and \(N_{core}^{PN}\) shows their memory and CPU cores respectively) and
+\(E_S^{PN}\) represents infrastructure links (\(C_{i,j}\) shows link \((i, j)\) bandwidth).
+
+\par
+\(i\)th chain represents with the following graph:
+\[
+G^{SFC}_i = (V^{SFC}_{i, F}, E^{SFC}_i)
+\]
+in which
+\(V^{SFC}_{i, F}\) represents chain nodes and
+\(E^{SFC}_{i}\) represents chain links.
+
+\begin{table}[H]
+    \caption{Parameters}
+    \label{tbl:parameters}
+    \begin{center}\begin{tabular}{|c|p{0.75\textwidth}|}
+    \hline
+    \(\mu(k)\) & required RAM of VNF instance with type \(k\) in GB \\
+    \hline
+    \(\chi(k)\) & required CPU cores of VNF instance with type \(k\) \\
+    \hline
+    \(\bar\mu\) & required RAM of VNFM in GB \\
+    \hline
+    \(\bar\chi\) & required CPU cores of VNFM \\
+    \hline
+    \(\kappa\) & maximum number of VNF instances that VNFM can handle \\
+    \hline
+    \(\nu(v, k)\) & assuming the value 1 if the VNF instance \(v\) has type \(k\)  \\
+    \hline
+    \(\beta(u, v)\) & required bandwidth in link from VNF instance \(u\) to \(v\) \\
+    \hline
+    \(\bar{\beta}\) & required bandwidth in management link \\
+    \hline
+    \(\rho\) & maximum neighborhood distance for instance management \\
+    \hline
+    \(\phi\) & VNFM license fee that must pay for each VNFM \\
+    \hline
+    \(\psi(w)\) & assuming the value 1 if the physical server \(w\) can support VNF instances \\
+    \hline
+    \(\omega(k)\) & assuming the value 1 if the type \(k\) needs a manager \\
+    \hline
+    \(\eta(w1, w2)\) & assuming the value 1 if the physical server \(w1\) cannot manage by physical server \(w2\) \\
+    \hline
+    \end{tabular}\end{center}
+\end{table}
+
+\begin{table}[H]
+    \caption{Variables}
+    \label{tbl:variables-1}
+    \begin{center}\begin{tabular}{|c|p{0.75\textwidth}|}
+    \hline
+    \(x_h\) & binary variable assuming the value 1 if the \(h\)th SFC request is accepted; otherwise its value is zero \\
+    \hline
+    \(y_{wk}\) & the number of VNF instances of type \(k\) that are used in server \(w \in V_s^{PN}\) \\
+    \hline
+    \(z^k_{vw}\) & binary variable assuming the value 1 if the VNF node \(v \in \cup_{i=1}^{T} V_{i, F}^{SFC}\) is served by the VNF instance of type k in the server \(w \in V_s^{PN}\) \\
+    \hline
+    \(\bar{y}_w\) & the number of VNFMs (each VNFM has its capacity and license fee) that are used in server \(w \in V_s^{PN} \) \\
+    \hline
+    \(\bar{z}_{hw}\) & binary variable assuming the value 1 if \(h\)th SFC is assigned to VNFM on server \(w \in V_s^{PN}\) \\
+    \hline
+    \end{tabular}\end{center}
+\end{table}
+
+Each node has limited memory resource. Each instance based on its type uses specific amount of this memory.
+
+\textit{Node Memory Constraint:}
+\begin{align}
+    \sum_{k=1}^F y_{wk} \mu(k) + \bar{y_w} \bar\mu \le N_{ram}^{PN}(w)
+    \quad
+    \forall w \in V_s^{PN}
+\end{align}
+
+Each node has limited amount of processing power in terms of CPU cores. Each instance based on its type uses
+specific amount of this processing power.
+
+\textit{Node CPU Constraint:}
+\begin{align}
+    \sum_{k=1}^F y_{wk} \chi(k) + \bar{y_w} \bar\chi \le N_{core}^{PN}(w)
+    \quad
+    \forall w \in V_s^{PN}
+\end{align}
+
+If a VNF instance is served on a physical node, its VNF type must be activated on it.
+Please note that we are not supporting VNF sharing.
+
+\textit{Service Place Constraint:}
+\begin{align}
+    \sum_{v \in \cup_{i=1}^T V_{i, F}^{SFC}} z_{vw}^k \le y_{wk}
+    \quad
+    \forall w \in V_s^{PN}, \forall k \in [1,\ldots, F]
+\end{align}
+
+Accepted chain is a chain that all of its nodes are placed on a physical server and have assigned VNFM.
+
+\textit{Service Constraint:}
+\begin{align}
+    x_h = \sum_{k=1}^{F} \sum_{w \in V_{s}^{PN}} z_{vw}^{k}
+    \quad
+    \forall v \in V_{h,F}^{SFC}, \forall h \in [1,\ldots, T]
+\end{align}
+
+\textit{Manage Constraint:}
+\begin{align}
+    x_h = \sum_{w \in V_{s}^{PN}} \bar{z}_{hw}
+    \quad
+    \forall h \in [1,\ldots, T]
+\end{align}
+
+\textit{Manage Capacity Constraint \& Manage Place Constraint:}
+\begin{align}
+    \sum_{i=1}^{T} \bar{z}_{iw} . \left( \sum_{v \in V_{i, F}^{SFC}} \sum_{k \in [1, \dots, F]} \nu(v, k) . \omega(k) \right) \\ \nonumber
+        \le \kappa . \bar{y}_{w}
+    \quad
+    \forall w \in V_{s}^{PN}
+\end{align}
+
+Each instance must be served with its type constraint.
+
+\textit{Type Constraint:}
+\begin{align}
+    z_{vw}^{k} \le \nu(v, k)
+    \quad
+    \forall w \in V_{s}^{PN},
+    \forall k \in [1,\ldots, F],
+    \forall v \in \cup_{i=1}^T V_{i, F}^{SFC}
+\end{align}
+
+There shouldn't be any VNF on servers that cannot handle them.
+
+\textit{VNF support constraint}
+\begin{align}
+    \sum_{k \in [1, \dots, F]} y_{wk} \le M . \psi(w)
+    \quad
+    w \in V_{s}^{PN}
+\end{align}
+
+Each physical server have an array of servers that cannot manage it.
+The following constraint represents it mathematically.
+
+\textit{Manager to node support constraint}
+\begin{align}
+    & 1 - z_{vw_1}^k + \bar{z}_{hw_2} = 0 \nonumber \\
+    & \forall w_1 \in V_s^{PN},
+    \forall w_2 \in V_s^{PN} \eta(w_1, w_2) = 1 \nonumber \\
+    & \forall h \in [1,\dots,T],
+    \forall v \in V_{h,F}^{SFC},
+    \forall k \in [1,\dots,T]
+\end{align}
+
+\begin{table}[H]
+    \label{tbl:variables-2}
+    \caption{Variables}
+    \begin{center}\begin{tabular}{|c|p{0.75\textwidth}|}
+    \hline
+    \(\tau^{(u,v)}_{ij}\) & binary variable assuming the value 1 if the virtual link \((u,v)\) is routed on the physical network link \((i,j)\) \\
+    \hline
+    \(\bar{\tau}^{v}_{ij}\) & binary variable assuming the value 1 if the management of VNF node \(v\) is routed on the physical network link \((i,j)\) \\
+    \hline
+    \end{tabular}\end{center}
+\end{table}
+
+\textit{Flow Conservation:}
+\begin{align}
+    \sum_{(i,j) \in E^{PN}} \tau_{ij}^{(u,v)} - \sum_{(j,i) \in E^{PN}} \tau_{ji}^{(u,v)} = \sum_{k=1}^{F} z_{ui}^{k} - \sum_{k=1}^{F} z_{vi}^{k} \nonumber \\
+    \forall i \in V_{S}^{PN}, (u,v) \in E_{h}^{SFC}, h \in [1,\ldots, T]
+\end{align}
+
+\textit{Management flow Conservation:}
+\begin{align}
+    \sum_{(i,j) \in E^{PN}} \bar{\tau}_{ij}^{v} - \sum_{(j,i) \in E^{PN}} \bar{\tau}_{ji}^{v} = \sum_{k=1}^{F} z_{vi}^{k} - \bar{z}_{hi} \nonumber \\
+    \forall i \in V_{S}^{PN}, v \in V_{h, F}^{SFC}, h \in [1,\ldots, T]
+\end{align}
+
+\textit{Link Bandwidth Constraint:}
+\begin{align}
+    \sum_{v \in \cup_{i=1}^{T} V_{i,F}^{SFC}} \bar{\tau}_{ij}^{v} . \bar{\beta} + \sum_{(u,v) \in \cup_{i=1}^{T} E_{i}^{SFC}} \tau_{ij}^{(u,v)} . \beta(u,v) \le C_{ij} \nonumber \\
+    \forall (i, j) \in E^{PN}
+\end{align}
+
+\textit{Radius Constraint}
+\begin{align}
+    \sum_{(i, j) \in E^{PN}} \bar{\tau}_{ij}^{v} \le \rho
+    \quad
+    \forall v \in \cup_{i=1}^T V_{i, F}^{SFC}
+\end{align}
+
+The objective is to maximize profit from placing chains:
+
+\begin{align}
+    max \sum_{h=1}^{T} c_hx_h - \sum_{w \in V_s^{PN}} \phi . \bar{y}_w
+\end{align}
