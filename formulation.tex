@@ -1,51 +1,51 @@
 \par
 Infrastructure graph represents with the following weighted graph:
 \[
-G_S^{PN} = (V_S^{PN}, E_S^{PN})
+G^p = (V^p,E^p)
 \]
 in which
-\(V_S^{PN}\) represents infrastructure nodes (\(N_{ram}^{PN}\) and \(N_{core}^{PN}\) shows their memory and CPU cores respectively) and
-\(E_S^{PN}\) represents infrastructure links (\(C_{i,j}\) shows link \((i, j)\) bandwidth).
+\(V^p\) represents infrastructure nodes (\(N_{ram}^{PN}\) and \(N_{core}^{PN}\) shows their memory and CPU cores respectively) and
+\(E^p\) represents infrastructure links (\(b^p_{i,j}\) shows link \((i, j) \in E^p\) bandwidth).
 
 \par
-\(i\)th chain represents with the following graph:
+\(h\)th chain represents with the following graph:
 \[
-G^{SFC}_i = (V^{SFC}_{i, F}, E^{SFC}_i)
+G^s_h = (V^s_h, E^s_h)
 \]
 in which
-\(V^{SFC}_{i, F}\) represents chain nodes and
-\(E^{SFC}_{i}\) represents chain links.
+\(V^s_{h}\) represents chain nodes and
+\(E^s_{h}\) represents chain links.
 
 \begin{table}[H]
     \caption{Parameters}
     \label{tbl:parameters}
     \begin{center}\begin{tabular}{|c|p{0.75\textwidth}|}
     \hline
-    \(\mu(k)\) & required RAM of VNF instance with type \(k\) in GB \\
+    \(m^s_k\) & required RAM of VNF instance with type \(k \in T\) in GB \\
     \hline
-    \(\chi(k)\) & required CPU cores of VNF instance with type \(k\) \\
+    \(c^s_k\) & required CPU cores of VNF instance with type \(k \in T\) \\
     \hline
-    \(\bar\mu\) & required RAM of VNFM in GB \\
+    \(m^m\) & required RAM of VNFM in GB \\
     \hline
-    \(\bar\chi\) & required CPU cores of VNFM \\
+    \(c^m\) & required CPU cores of VNFM \\
     \hline
     \(\kappa\) & maximum number of VNF instances that VNFM can handle \\
     \hline
     \(\nu(v, k)\) & assuming the value 1 if the VNF instance \(v\) has type \(k\)  \\
     \hline
-    \(\beta(u, v)\) & required bandwidth in link from VNF instance \(u\) to \(v\) \\
+    \(b^s_{(u, v),h}\) & required bandwidth for virtual link \((u, v) \in E^s_h\) \\
     \hline
-    \(\bar{\beta}\) & required bandwidth in management link \\
+    \(b^m\) & required bandwidth in management link \\
     \hline
     \(\rho\) & maximum neighborhood distance for instance management \\
     \hline
     \(\phi\) & VNFM license fee that must pay for each VNFM \\
     \hline
-    \(\psi(w)\) & assuming the value 1 if the physical server \(w\) can support VNF instances \\
+    \(\psi_i\) & assuming the value 1 if the physical server \(i\) can support VNF instances \\
     \hline
-    \(\omega(k)\) & assuming the value 1 if the type \(k\) needs a manager \\
+    \(\omega_k\) & assuming the value 1 if the type \(k\) needs a manager \\
     \hline
-    \(\eta(w1, w2)\) & assuming the value 1 if the physical server \(w1\) cannot manage by physical server \(w2\) \\
+    \(\eta_{(i, j)}\) & assuming the value 1 if the physical server \(i\) cannot manage by physical server \(j\) \\
     \hline
     \end{tabular}\end{center}
 \end{table}
