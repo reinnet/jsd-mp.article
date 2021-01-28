@@ -1,11 +1,9 @@
-We have formulated the JSD-MP problem in ILP and its optimal solution requires NP-Hard.
-In this section we represent a way to have a near-optimal solution in polynomial time.
-In reality providers need to decide quickly for their SFC request and the later solution will help them.
-As we mentioned before JSD-MP problem consists of two parts that we formulate together.
-First part is VNF placement and the second part is VNFM placement.
+We have formulated the JSD-MP problem in ILP and its optimal solution is NP-Hard.
+In this section we represent a way to have a near-optimal solution in polynomial time for deciding quickly on SFC request and it can be used at large datacenters.
+As we mentioned before JSD-MP problem consists of two parts which are VNF placement and VFNM placement that we formulate them together.
 
 \subsection{Maximizing the Accepted SFC Requests with Management Constraints (MASMAN)}
-For each chain we devide the placement into two different phase that are solved using different algorithms.
+For each chain we divide the placement into two different phase that are solved using different algorithms.
 The first phase is the VNF placement phase that we are solve it with Bari \cite{Bari2015} algorithm.
 This algorithm is an efficient algorithm for SFC placement that can be used here but it doesn't consider the management resources.
 This algorithm for each chain solves a Dynamic Programming problem and decide each node location with its previous one to minimize the cost term.

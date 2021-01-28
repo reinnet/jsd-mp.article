@@ -11,6 +11,9 @@ Source code is available on [overleaf](https://overleaf.com/).
 
 ```sh
 sudo tlmgr install elsarticle
+sudo tlmgr install multirow
+sudo tlmgr install algorithmicx
+sudo tlmgr install soul
 ```
 
 2. Compile and Run :roket:
