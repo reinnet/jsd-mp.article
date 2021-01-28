@@ -1,0 +1,23 @@
+We have formulated the JSD-MP problem in ILP and its optimal solution requires NP-Hard.
+In this section we represent a way to have a near-optimal solution in polynomial time.
+In reality providers need to decide quickly for their SFC request and the later solution will help them.
+As we mentioned before JSD-MP problem consists of two parts that we formulate together.
+First part is VNF placement and the second part is VNFM placement.
+
+\subsection{Maximizing the Accepted SFC Requests with Management Constraints (MASMAN)}
+For each chain we devide the placement into two different phase that are solved using different algorithms.
+The first phase is the VNF placement phase that we are solve it with Bari \cite{Bari2015} algorithm.
+This algorithm is an efficient algorithm for SFC placement that can be used here but it doesn't consider the management resources.
+This algorithm for each chain solves a Dynamic Programming problem and decide each node location with its previous one to minimize the cost term.
+Here we add a new stage to this algorithm to decide the VNFM at the last. By this way we also consider the management resources jointly with SFC placement.
+At the end, we used Tabu Search for improving the VNFM placement. By improving we mean merging VNFM to reduce the license cost.
+
+%% TODO: Add algorithm pseudocode
+
+\cite{AbuLebdeh2017} considers the VNF placement is know a prior so we must used its algorithm after the VNF placement.
+Therefore, to comparing MASMAN with \cite{AbuLebdeh2017} as the nearest work to JSD-MP,
+We use the Bari \cite{Bari2015} algorithm for the placement and then use the proposed way in the \cite{AbuLebdeh2017} for VNFM placement.
+The proposed way in \cite{AbuLebdeh2017} use Tabu Search for finding the best VNFM placement.
+The results of this comparasion are availabe at the following sections.
+
+%% Complexity analysis
