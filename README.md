@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The latex files of JSD-MP article in Elsevier template. Article is written by @1995parham and @bahador-bakhshi.
+The latex files of JSD-MP article in Elsevier template. Article is written by [@1995parham](https://github.com/1995parham) and [@bahador-bakhshi](https://github.com/Bahador-Bakhshi).
 Source code is available on [overleaf](https://overleaf.com/).
 
 ## Up and Running
