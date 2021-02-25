@@ -12,7 +12,7 @@ Source code is available on [overleaf](https://overleaf.com/).
 ```sh
 sudo tlmgr install elsarticle
 sudo tlmgr install multirow
-sudo tlmgr install algorithmicx
+sudo tlmgr install algorithmicx algorithms
 sudo tlmgr install soul
 ```
 
