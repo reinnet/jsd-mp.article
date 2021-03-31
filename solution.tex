@@ -19,6 +19,27 @@ At the end, we used Tabu Search for improving the VNFM placement. By improving w
     \Function{masman\_placement}{$chains, topology$}
     \ForAll{$chains$}
       \For{$i \gets 1, len(chain)$}
+      \If{$i == 0$}
+      \ForAll{$n \in topology.nodes$}
+      \If{$hasEnoughResource(n)$}
+      \State{$cost[(0, n)] \gets cost(n)$}
+      \EndIf
+      \EndFor
+      \Else
+      \ForAll{$n \in topology.nodes$}
+      \ForAll{$k \in topology.nodes$}
+      \If{$hasEnoughResourceOnState(i - 1, k, n)$}
+      \State{$cost \gets costOnState(i - 1, k, n)$}
+      \If{$cost \le min$}
+      \State{$min = cost$}
+      \EndIf
+      \EndIf
+      \EndFor
+      \State{$cost[(i, n)] \gets min$}
+      \EndFor
+      \EndIf
+      \EndFor
+      \EndIf
       \EndFor
     \EndFor
     \EndFunction
