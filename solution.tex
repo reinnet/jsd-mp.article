@@ -12,7 +12,7 @@ Each stage in the graph is a one network function that needs a placement and gra
 At the end, we used Tabu Search for improving the VNFM placement. By improving we mean merging VNFMs to reduce the license cost. In tabu search we randomly select two physical nodes to merge them and also update the tabu table to not check them again at the end if this merge is fasible we wil update the min cost and continue the iteration.
 
 \begin{algorithm}
-  \caption{MASMAN Algorithm}
+  \caption{MASMAN Algorithm - 1}
   \label{alg:masman}
   \begin{algorithmic}[1]
     \Require{$chains, topoloy$}
@@ -41,13 +41,19 @@ At the end, we used Tabu Search for improving the VNFM placement. By improving w
       \EndFor
     \EndFor
     \EndFunction
+    \algstore{masman}
+  \end{algorithmic}
+\end{algorithm}
+\begin{algorithm}
+  \caption{MASMAN Algorithm - 2}
+  \begin{algorithmic}[1]
+    \algrestore{masman}
     \Function{masman\_manager\_placement}{$chains, topology$}
     \ForAll{$chain \in chains$}
       \ForAll{$n \in topology.nodes$}
         \If{$canBeManager(chain, n)$}\Comment{node n must have connections to all chain's nodes besides required resources}
           \State{$chain.manager = n$}
           \State{$reserveManagementResources(n)$}
-          \Continue
         \EndIf
       \EndFor
     \EndFor
